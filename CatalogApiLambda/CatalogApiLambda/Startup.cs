@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Amazon.S3;
+using CatalogApiLambda.Helpers;
 using CatalogApiLambda.Models; 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NLog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace CatalogApiLambda
 {
@@ -31,6 +33,10 @@ namespace CatalogApiLambda
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+            //services.AddScoped<IListRepository, ListRepository>();
+            services.AddTransient<IListRepository, ListRepository>();
 
             services.AddAWSService<IAmazonS3>();
             var appSettingsSection = Configuration.GetSection("ServiceConfiguration");
