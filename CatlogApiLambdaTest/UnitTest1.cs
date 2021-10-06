@@ -13,8 +13,8 @@ namespace CatlogApiLambdaTest
         [Test]
         public void Test1()
         {
-            var result = searchwordController.Get("SAteesh");
-            Assert.NotNull(result);
+             var result = searchwordController.GetData("SAteesh");
+            Assert.NotNull(null);
         }
     }
 }
